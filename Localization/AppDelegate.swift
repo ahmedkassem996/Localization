@@ -7,14 +7,21 @@
 //
 
 import UIKit
+import MOLH
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, MOLHResetable {
 
 
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-    // Override point for customization after application launch.
+    
+    MOLHFont.shared.arabic = UIFont(name: "Courier", size: 13)!
+    MOLHLanguage.setDefaultLanguage("ar")
+    MOLH.shared.activate(true)
+    MOLH.shared.specialKeyWords = ["Cancel","Done"]
+    
+    
     return true
   }
 
@@ -31,7 +38,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
     // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
   }
+  
+  func reset() {
+    guard let window =  UIApplication.shared.keyWindow else { fatalError() }
+      let stry = UIStoryboard(name: "Main", bundle: nil)
+      window.rootViewController =
+        stry.instantiateViewController(withIdentifier: "ViewController") as! ViewController
+  }
 
+}
 
+extension String {
+  var localized: String {
+    return NSLocalizedString(self, comment: "")
+  }
 }
 

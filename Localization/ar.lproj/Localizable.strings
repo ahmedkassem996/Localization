@@ -1,0 +1,13 @@
+
+//  Localizable.strings
+//  Localization
+//
+//  Created by AHMED on 1/13/1399 AP.
+//  Copyright © 1399 AHMED. All rights reserved.
+//
+
+
+"lang" = "ar";
+
+"hello" = "مرحبا";
+"EN / AR" = "English";
